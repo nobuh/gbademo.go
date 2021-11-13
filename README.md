@@ -1,3 +1,3 @@
 # gbademo.go
 
-GBA Demos in TinyGo.
+GBA Demo in TinyGo.
