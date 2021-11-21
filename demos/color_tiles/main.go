@@ -80,9 +80,8 @@ func main() {
 	z++
 
 	// initialize display
-
-	bgRegister[0].Set(0x80) // 256 color and tile block index is 0
-	bgRegister[1].Set(0x1C) // map block index index is 28 and 32x32 screen
+	bgRegister[0].Set(0x80) // set 256 color and the tile block index is 0
+	bgRegister[1].Set(0x1C) // the map block index is 28 and set 32x32 screen
 	displayRegister[0].Set(LCD_MODE0)
 	displayRegister[1].Set(LCD_BG0EN)
 
