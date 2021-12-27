@@ -53,20 +53,26 @@ func main() {
 	bgColor[2].Set(BGR(31, 31, 31)) // White
 
 	// initialize tiles
+	bytePerChar := 8 * 8
+	uint16PerChar := bytePerChar / 2
+	var white uint16 = 2
+	var black uint16 = 1
+	var MSB, LSB uint16
+
 	for i := 0; i < 256; i++ {
 		for row := 0; row < 8; row++ {
-			for col := 7; col >= 0; col-- {
-				var val, bit uint16
-				if font.Char8x8[i][row]&(1<<col) > 0 {
-					bit = 2
+			for col := 0; col < 4; col++ {
+				if font.Char8x8[i][row]&(1<<(7-col*2)) > 0 {
+					LSB = white
 				} else {
-					bit = 1
+					LSB = black
 				}
-				if col%2 > 0 {
-					val = uint16(bit)
+				if font.Char8x8[i][row]&(1<<(7-col*2-1)) > 0 {
+					MSB = white * 256 // shift 8 bit
 				} else {
-					tileData[(i*LCD_VWIDTH)+(row*4)+((7-col)/2)].Set(val + uint16(bit<<8))
+					MSB = black * 256 // shift 8 bit
 				}
+				tileData[(i*uint16PerChar)+(row*4)+col].Set(LSB + MSB)
 			}
 		}
 	}
