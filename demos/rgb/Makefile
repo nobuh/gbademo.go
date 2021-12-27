@@ -1,4 +1,4 @@
-GO111MODULE=off
+export GO111MODULE := off
 
 all: rgb.bin 
 	mgba -1 rgb.bin

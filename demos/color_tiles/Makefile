@@ -1,4 +1,4 @@
-GO111MODULE=off
+export GO111MODULE := off
 
 all: main.bin
 	mgba -1 main.bin
